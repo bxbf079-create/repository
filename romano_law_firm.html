@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Romano Law Firm — Plaintiff-only personal injury attorneys serving Florida, Washington D.C., and Oklahoma. Free case evaluation. No win, no fee.">
+<title>The Romano Law Firm | Personal Injury Attorneys — Florida, D.C. & Oklahoma</title>
+
+<!--
+  ══════════════════════════════════════════════════
+  IMAGE FILES YOU NEED TO DOWNLOAD & PLACE
+  ══════════════════════════════════════════════════
+
+  1. romano-law-firm-logo.webp
+     Download from: https://theromanolawfirm.com/media/images/romano-law-firm-logo.webp
+     Place in: same folder as this HTML file
+     Used in: navbar (white background — logo shows naturally)
+     Note: The logo has a black background. The navbar is white,
+     so the logo's black text becomes invisible. We solve this by
+     using mix-blend-mode:multiply — white bg areas disappear,
+     colored crest + black text show on white. ✓
+
+  2. d-romano-profilepic.jpg
+     Download from: https://theromanolawfirm.com/media/images/d-romano-profilepic.jpg
+     Place in: same folder as this HTML file
+     Used in: About section portrait
+
+  3. associates.webp
+     Download from: https://theromanolawfirm.com/media/images/associates.webp
+     Place in: same folder as this HTML file
+     Used in: Associates section
+
+  ══════════════════════════════════════════════════
+  NO OTHER FILES NEEDED. Everything else is inline.
+  ══════════════════════════════════════════════════
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!--
+  TYPOGRAPHY CHOICE:
+  • Headings: Cormorant Garamond — an editorial-grade serif with legal gravitas.
+    Tall, elegant, and authoritative. Similar to what premium law/finance firms use.
+    Free via Google Fonts, no license issues.
+  • Body: Outfit — a clean geometric sans. Highly legible, modern, professional.
+    Much better than the overused Source Sans.
+  • Accent/caps labels: Outfit 700 with letter-spacing
+-->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════════
+   CSS VARIABLES
+══════════════════════════════════════════ */
+:root {
+  --navy:         #0A1A2E;
+  --navy-mid:     #112236;
+  --navy-light:   #1A3352;
+  --crimson:      #9B1A28;
+  --crimson-light:#B82233;
+  --gold:         #B8922E;
+  --gold-light:   #D4AE5A;
+  --gold-pale:    #F0E4C0;
+  --cream:        #F7F3EC;
+  --cream-dark:   #EDE7D9;
+  --white:        #FFFFFF;
+  --text-dark:    #0C1B2B;
+  --text-mid:     #2C3E52;
+  --text-muted:   #5E6E80;
+  --border:       #D8D0C4;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Outfit', sans-serif;
+
+  --section-pad:  clamp(60px, 8vw, 108px);
+  --container:    1160px;
+  --radius:       3px;
+  --ease:         cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ══════════════════════════════════════════
+   RESET + BASE
+══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font-body); color: var(--text-dark); background: var(--white); line-height: 1.65; overflow-x: hidden; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+.container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+/* ══════════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-left { opacity: 0; transform: translateX(-32px); transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); }
+.reveal-left.visible { opacity: 1; transform: none; }
+.reveal-right { opacity: 0; transform: translateX(32px); transition: opacity 0.75s var(--ease), transform 0.75s var(--ease); }
+.reveal-right.visible { opacity: 1; transform: none; }
+
+/* ══════════════════════════════════════════
+   NAVBAR
+   White background so the dark logo is legible.
+   mix-blend-mode: multiply makes the white parts
+   of the logo "disappear" into the white navbar,
+   leaving only the crest colours and black text visible.
+══════════════════════════════════════════ */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: var(--white);
+  border-bottom: 2px solid var(--crimson);
+  transition: box-shadow 0.3s var(--ease);
+}
+#navbar.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.10); }
+
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 68px; gap: 16px;
+}
+
+/* LOGO: mix-blend-mode:multiply makes the black background
+   vanish against the white navbar, leaving crest + text visible */
+.nav-logo {
+  display: flex; align-items: center; flex-shrink: 0;
+  text-decoration: none;
+}
+.nav-logo img {
+  height: 50px;
+  width: auto;
+  display: block;
+  mix-blend-mode: multiply;   /* ← KEY FIX: black bg disappears on white navbar */
+}
+/* Fallback text if image not found */
+.nav-logo-fallback {
+  display: none;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: 0.02em;
+}
+
+.nav-links { display: flex; align-items: center; gap: 0; flex: 1; justify-content: center; }
+.nav-links a {
+  font-family: var(--font-body); font-size: 0.775rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-mid);
+  padding: 6px 12px; border-radius: 2px;
+  transition: color 0.2s, background 0.2s; white-space: nowrap;
+}
+.nav-links a:hover { color: var(--crimson); background: rgba(155,26,40,0.05); }
+
+.nav-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.nav-phone {
+  font-family: var(--font-body); font-size: 0.82rem; font-weight: 700;
+  color: var(--navy); white-space: nowrap;
+}
+.nav-phone a { color: inherit; transition: color 0.2s; }
+.nav-phone a:hover { color: var(--crimson); }
+
+.btn-nav {
+  display: inline-flex; align-items: center;
+  background: var(--crimson); color: var(--white);
+  font-family: var(--font-body); font-size: 0.73rem; font-weight: 700;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  padding: 9px 17px; border-radius: var(--radius); border: none; cursor: pointer;
+  white-space: nowrap; transition: background 0.2s, transform 0.15s;
+}
+.btn-nav:hover { background: var(--crimson-light); transform: translateY(-1px); }
+
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.nav-hamburger span {
+  display: block; width: 23px; height: 2px;
+  background: var(--navy); border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-mobile-menu {
+  display: none; flex-direction: column;
+  background: var(--white); border-top: 1px solid var(--border);
+  padding: 14px 24px 18px; gap: 2px;
+}
+.nav-mobile-menu.open { display: flex; }
+.nav-mobile-menu a {
+  font-size: 0.88rem; font-weight: 600; color: var(--text-mid);
+  padding: 10px 4px; border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+}
+.nav-mobile-menu a:hover { color: var(--crimson); }
+.nav-mobile-menu .mobile-cta {
+  margin-top: 12px; text-align: center;
+  background: var(--crimson); color: var(--white);
+  padding: 13px; border-radius: var(--radius);
+  font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; font-size: 0.82rem;
+}
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+#hero {
+  padding-top: 68px;
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden;
+  background: var(--navy);
+}
+/* Textural diagonal lines */
+#hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 65% 55% at 75% 50%, rgba(155,26,40,0.14) 0%, transparent 68%),
+    repeating-linear-gradient(-48deg, transparent, transparent 42px, rgba(255,255,255,0.012) 42px, rgba(255,255,255,0.012) 43px);
+  z-index: 0;
+}
+/* Vertical gold rule — decorative */
+#hero .hero-rule {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: linear-gradient(180deg, transparent 0%, var(--crimson) 25%, var(--crimson) 75%, transparent 100%);
+  z-index: 1;
+}
+
+.hero-content { position: relative; z-index: 2; padding: var(--section-pad) 0; }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--font-body); font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-light);
+  margin-bottom: 22px;
+}
+.hero-eyebrow::before {
+  content: ''; display: block; width: 32px; height: 1px;
+  background: var(--crimson);
+}
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 7vw, 6.2rem);
+  font-weight: 600;
+  letter-spacing: -0.01em; line-height: 1.0;
+  color: var(--cream); max-width: 900px; margin-bottom: 24px;
+}
+.hero-headline em {
+  font-style: italic; color: var(--crimson-light);
+}
+
+.hero-sub {
+  font-family: var(--font-body); font-size: clamp(0.97rem, 1.8vw, 1.1rem);
+  color: #8BA5BE; max-width: 520px; margin-bottom: 40px; line-height: 1.76;
+  font-weight: 300;
+}
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--crimson); color: var(--white);
+  font-family: var(--font-body); font-size: 0.9rem; font-weight: 700;
+  letter-spacing: 0.04em; padding: 15px 30px; border-radius: var(--radius);
+  border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 22px rgba(155,26,40,0.4);
+}
+.btn-primary:hover {
+  background: var(--crimson-light); transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(155,26,40,0.5);
+}
+
+.btn-outline-light {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent; color: var(--cream);
+  font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;
+  padding: 14px 26px; border-radius: var(--radius);
+  border: 1.5px solid rgba(245,240,232,0.24); cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.btn-outline-light:hover {
+  border-color: var(--gold-light); color: var(--gold-light);
+  background: rgba(184,146,46,0.08);
+}
+.btn-outline-light svg { width: 17px; height: 17px; fill: var(--gold-light); flex-shrink: 0; }
+
+/* ══════════════════════════════════════════
+   TRUST BAR
+══════════════════════════════════════════ */
+#trust-bar { background: var(--cream-dark); border-bottom: 1px solid var(--border); }
+.trust-bar-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+.trust-item {
+  display: flex; align-items: center; gap: 13px;
+  padding: 20px 20px; border-right: 1px solid var(--border);
+}
+.trust-item:last-child { border-right: none; }
+.trust-icon {
+  flex-shrink: 0; width: 36px; height: 36px;
+  background: var(--navy); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.trust-icon svg { width: 17px; height: 17px; fill: var(--gold); }
+.trust-label {
+  font-family: var(--font-body); font-size: 0.79rem; font-weight: 700;
+  letter-spacing: 0.01em; color: var(--navy); line-height: 1.3;
+}
+.trust-sub { font-size: 0.71rem; color: var(--text-muted); margin-top: 2px; }
+
+/* ══════════════════════════════════════════
+   SECTION UTILITIES
+══════════════════════════════════════════ */
+.section-label {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-body); font-size: 0.69rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--crimson);
+  margin-bottom: 12px;
+}
+.section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--crimson); }
+.section-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 600;
+  letter-spacing: -0.01em; color: var(--navy); line-height: 1.06; margin-bottom: 18px;
+}
+.section-headline em { font-style: italic; color: var(--crimson); }
+.section-body {
+  font-size: 1rem; color: var(--text-mid);
+  max-width: 680px; line-height: 1.82; font-weight: 300;
+}
+
+/* ══════════════════════════════════════════
+   ABOUT
+══════════════════════════════════════════ */
+#about { padding: var(--section-pad) 0; background: var(--white); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 84px); align-items: start;
+}
+
+.about-photo-wrap { position: relative; }
+.about-photo {
+  width: 100%; aspect-ratio: 4/5;
+  border-radius: var(--radius); overflow: hidden;
+  background: linear-gradient(160deg, #1A3352 0%, #0A1A2E 100%);
+  position: relative;
+}
+.about-photo img {
+  width: 100%; height: 100%; object-fit: cover; object-position: top center;
+}
+.about-photo-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 12px; padding: 24px; text-align: center;
+}
+.about-photo-placeholder svg { width: 60px; height: 60px; fill: rgba(184,146,46,0.3); }
+.about-photo-placeholder span { font-size: 0.74rem; color: rgba(139,165,190,0.6); line-height: 1.5; }
+
+/* Gold accent corner frame */
+.about-photo::before {
+  content: '';
+  position: absolute; top: -8px; left: -8px;
+  width: 60px; height: 60px;
+  border-top: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
+  z-index: 2; pointer-events: none;
+}
+.about-photo::after {
+  content: '';
+  position: absolute; bottom: -8px; right: -8px;
+  width: 60px; height: 60px;
+  border-bottom: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+  z-index: 2; pointer-events: none;
+}
+
+.about-photo-badge {
+  position: absolute; bottom: 24px; left: -22px;
+  background: var(--navy); border: 1px solid var(--gold);
+  padding: 14px 18px; border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+.about-photo-badge-year {
+  font-family: var(--font-display); font-size: 2.4rem; font-weight: 600;
+  color: var(--gold-light); line-height: 1;
+}
+.about-photo-badge-text {
+  font-family: var(--font-body); font-size: 0.67rem; font-weight: 600;
+  color: #6B8BA6; margin-top: 4px; letter-spacing: 0.07em; text-transform: uppercase;
+}
+
+.about-content { padding-top: 6px; }
+.about-content .section-body { max-width: none; margin-bottom: 16px; }
+
+.about-pullquote {
+  border-left: 3px solid var(--crimson); padding: 20px 24px;
+  margin: 28px 0; background: var(--cream); border-radius: 0 var(--radius) var(--radius) 0;
+}
+.about-pullquote p {
+  font-family: var(--font-display); font-size: 1.35rem;
+  font-style: italic; color: var(--navy); line-height: 1.5;
+}
+.about-pullquote cite {
+  display: block; margin-top: 10px;
+  font-family: var(--font-body); font-size: 0.73rem; font-weight: 700;
+  color: var(--crimson); letter-spacing: 0.1em; text-transform: uppercase;
+  font-style: normal;
+}
+
+.about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.about-tag {
+  font-family: var(--font-body); font-size: 0.71rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--navy);
+  background: var(--cream-dark); border: 1px solid var(--border);
+  padding: 5px 12px; border-radius: 20px;
+}
+
+/* ══════════════════════════════════════════
+   ASSOCIATES SECTION
+══════════════════════════════════════════ */
+#associates { padding: var(--section-pad) 0; background: var(--cream); }
+.associates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 5vw, 80px); align-items: center; }
+.associates-photo {
+  width: 100%; aspect-ratio: 16/10;
+  border-radius: var(--radius); overflow: hidden;
+  background: linear-gradient(140deg, #1A3352 0%, #0A1A2E 100%);
+  position: relative;
+}
+.associates-photo img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.associates-photo-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 10px; padding: 24px; text-align: center;
+}
+.associates-photo-placeholder svg { width: 52px; height: 52px; fill: rgba(184,146,46,0.3); }
+.associates-photo-placeholder span { font-size: 0.73rem; color: rgba(139,165,190,0.55); }
+.associates-content .section-body { max-width: none; margin-bottom: 18px; }
+
+/* ══════════════════════════════════════════
+   WHY CHOOSE
+══════════════════════════════════════════ */
+#why { padding: var(--section-pad) 0; background: var(--navy); position: relative; overflow: hidden; }
+#why::before {
+  content: '';
+  position: absolute; top: -80px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(155,26,40,0.09) 0%, transparent 70%);
+  z-index: 0;
+}
+#why .section-label { color: var(--gold-light); }
+#why .section-label::before { background: var(--gold); }
+#why .section-headline { color: var(--cream); }
+
+.why-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 16px; position: relative; z-index: 1; margin-top: 42px;
+}
+.why-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius); padding: 28px 20px;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s;
+}
+.why-card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(184,146,46,0.28); transform: translateY(-4px);
+}
+.why-card-icon {
+  width: 44px; height: 44px; background: var(--crimson);
+  border-radius: var(--radius); display: flex; align-items: center;
+  justify-content: center; margin-bottom: 16px;
+}
+.why-card-icon svg { width: 21px; height: 21px; fill: var(--white); }
+.why-card-title {
+  font-family: var(--font-display); font-size: 1.5rem; font-weight: 600;
+  letter-spacing: 0em; color: var(--cream); margin-bottom: 10px; line-height: 1.1;
+}
+.why-card-body { font-size: 0.86rem; color: #7A94AB; line-height: 1.75; font-weight: 300; }
+
+/* ══════════════════════════════════════════
+   PRACTICE AREAS
+══════════════════════════════════════════ */
+#practice { padding: var(--section-pad) 0; background: var(--cream); }
+.practice-intro { max-width: 620px; margin-bottom: 46px; }
+.practice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.practice-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 28px; display: flex; gap: 16px;
+  align-items: flex-start;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.practice-card:hover {
+  border-color: var(--crimson);
+  box-shadow: 0 6px 28px rgba(0,0,0,0.07);
+  transform: translateY(-3px);
+}
+.practice-card-num {
+  font-family: var(--font-display); font-size: 3rem; font-weight: 400;
+  color: var(--crimson); opacity: 0.15; line-height: 1; flex-shrink: 0; min-width: 42px;
+}
+.practice-card-title {
+  font-family: var(--font-display); font-size: 1.6rem; font-weight: 600;
+  letter-spacing: 0em; color: var(--navy); margin-bottom: 8px;
+}
+.practice-card-body { font-size: 0.875rem; color: var(--text-muted); line-height: 1.72; font-weight: 300; }
+
+/* ══════════════════════════════════════════
+   HOW WE WORK
+══════════════════════════════════════════ */
+#how { padding: var(--section-pad) 0; background: var(--white); }
+.how-steps {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0; position: relative; margin-top: 52px;
+}
+.how-steps::before {
+  content: '';
+  position: absolute; top: 34px;
+  left: calc(16.67% + 20px); right: calc(16.67% + 20px);
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--crimson) 0, var(--crimson) 10px, transparent 10px, transparent 22px);
+  z-index: 0;
+}
+.how-step {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 0 22px; position: relative; z-index: 1;
+}
+.how-step-num {
+  width: 68px; height: 68px;
+  background: var(--navy); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 2rem; font-weight: 600;
+  color: var(--gold-light); margin-bottom: 22px;
+  border: 3px solid var(--cream-dark); flex-shrink: 0;
+}
+.how-step-title {
+  font-family: var(--font-display); font-size: 1.5rem; font-weight: 600;
+  color: var(--navy); margin-bottom: 10px;
+}
+.how-step-body { font-size: 0.875rem; color: var(--text-muted); line-height: 1.72; font-weight: 300; }
+
+/* ══════════════════════════════════════════
+   FAQ
+══════════════════════════════════════════ */
+#faq { padding: var(--section-pad) 0; background: var(--cream); }
+.faq-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 5vw, 80px); align-items: start;
+}
+.faq-intro { padding-top: 6px; }
+.faq-intro .section-body { margin-bottom: 24px; }
+.faq-cta-box { background: var(--navy); padding: 28px; border-radius: var(--radius); margin-top: 28px; }
+.faq-cta-box p { font-size: 0.88rem; color: #7A94AB; margin-bottom: 16px; line-height: 1.7; font-weight: 300; }
+.faq-cta-box .btn-primary { width: 100%; justify-content: center; }
+.faq-list { display: flex; flex-direction: column; gap: 2px; }
+.faq-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  transition: border-color 0.2s;
+}
+.faq-item.open { border-color: var(--navy); }
+.faq-question {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 18px 20px; cursor: pointer;
+  font-family: var(--font-body); font-size: 0.9rem; font-weight: 600;
+  color: var(--navy); user-select: none; transition: background 0.2s;
+}
+.faq-question:hover { background: var(--cream); }
+.faq-item.open .faq-question { background: var(--cream); color: var(--crimson); }
+.faq-toggle {
+  flex-shrink: 0; width: 22px; height: 22px;
+  background: var(--cream-dark); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.3s;
+}
+.faq-item.open .faq-toggle { background: var(--crimson); transform: rotate(45deg); }
+.faq-toggle svg { width: 11px; height: 11px; fill: var(--navy); }
+.faq-item.open .faq-toggle svg { fill: var(--white); }
+.faq-answer {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s var(--ease), padding 0.3s;
+  padding: 0 20px;
+  font-size: 0.875rem; color: var(--text-mid); line-height: 1.78; font-weight: 300;
+}
+.faq-item.open .faq-answer { max-height: 400px; padding: 0 20px 20px; }
+
+/* ══════════════════════════════════════════
+   LANGUAGES STRIP
+══════════════════════════════════════════ */
+#languages { background: var(--crimson); padding: 15px 0; }
+.lang-inner {
+  display: flex; align-items: center; justify-content: center;
+  gap: 26px; flex-wrap: wrap;
+}
+.lang-item {
+  display: flex; align-items: center; gap: 7px;
+  font-family: var(--font-body); font-size: 0.83rem; font-weight: 600;
+  color: var(--white); letter-spacing: 0.04em;
+}
+.lang-sep { color: rgba(255,255,255,0.32); font-size: 1rem; }
+
+/* ══════════════════════════════════════════
+   CONTACT
+══════════════════════════════════════════ */
+#contact { padding: var(--section-pad) 0; background: var(--navy); position: relative; overflow: hidden; }
+#contact::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 65% at 95% 10%, rgba(155,26,40,0.09) 0%, transparent 60%);
+  z-index: 0;
+}
+#contact .section-label { color: var(--gold-light); }
+#contact .section-label::before { background: var(--gold); }
+#contact .section-headline { color: var(--cream); }
+
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1.1fr;
+  gap: clamp(40px, 5vw, 72px); position: relative; z-index: 1;
+}
+.contact-info p {
+  font-size: 0.9rem; color: #7A94AB; line-height: 1.8;
+  margin-bottom: 28px; font-weight: 300;
+}
+.contact-details { display: flex; flex-direction: column; gap: 16px; }
+.contact-detail-item { display: flex; align-items: flex-start; gap: 12px; }
+.contact-detail-icon {
+  width: 36px; height: 36px; background: rgba(255,255,255,0.06);
+  border-radius: var(--radius); display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0;
+}
+.contact-detail-icon svg { width: 16px; height: 16px; fill: var(--gold); }
+.contact-detail-label {
+  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 3px;
+}
+.contact-detail-value {
+  font-size: 0.86rem; color: #A0B8CE; line-height: 1.5; font-weight: 300;
+}
+.contact-detail-value a { color: inherit; transition: color 0.2s; }
+.contact-detail-value a:hover { color: var(--cream); }
+
+.appt-types { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.appt-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.73rem; font-weight: 600; color: #7A94AB;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
+  padding: 6px 12px; border-radius: 20px;
+}
+.appt-tag svg { width: 12px; height: 12px; fill: var(--gold); }
+
+/* Contact Form */
+.contact-form-wrap {
+  background: var(--white); border-radius: var(--radius);
+  padding: clamp(24px, 4vw, 40px);
+}
+.form-header { margin-bottom: 24px; }
+.form-header h3 {
+  font-family: var(--font-display); font-size: 2rem; font-weight: 600;
+  color: var(--navy); margin-bottom: 5px;
+}
+.form-header p { font-size: 0.81rem; color: var(--text-muted); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+.form-label {
+  font-size: 0.71rem; font-weight: 700; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--navy);
+}
+.form-input, .form-textarea {
+  font-family: var(--font-body); font-size: 0.9rem; color: var(--text-dark);
+  background: var(--cream); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 10px 14px;
+  outline: none; transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
+}
+.form-input:focus, .form-textarea:focus {
+  border-color: var(--navy); box-shadow: 0 0 0 3px rgba(10,26,46,0.07);
+}
+.form-textarea { resize: vertical; min-height: 100px; }
+.form-submit { width: 100%; padding: 14px; font-size: 0.92rem; margin-top: 4px; }
+.form-disclaimer {
+  font-size: 0.69rem; color: var(--text-muted);
+  text-align: center; margin-top: 10px; line-height: 1.55;
+}
+.form-success { display: none; text-align: center; padding: 38px 20px; }
+.form-success.visible { display: block; }
+.form-success-icon {
+  width: 58px; height: 58px; background: #EBF5EC; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;
+}
+.form-success-icon svg { width: 28px; height: 28px; fill: #2E7D32; }
+.form-success h4 {
+  font-family: var(--font-display); font-size: 1.8rem; font-weight: 600;
+  color: var(--navy); margin-bottom: 10px;
+}
+.form-success p { font-size: 0.86rem; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+
+/* ══════════════════════════════════════════
+   FOOTER
+   Logo on dark bg: use filter brightness(0) invert(1)
+   to convert the dark logo to white. The crest colors
+   will also invert, but it still reads clearly.
+   For best result download white version of logo from
+   designer — instructions below.
+══════════════════════════════════════════ */
+#footer { background: #070D16; padding: 56px 0 0; }
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 36px; padding-bottom: 44px;
+}
+
+/*
+  FOOTER LOGO NOTE:
+  The logo file (romano-law-firm-logo.webp) has a black background.
+  We apply filter:brightness(0) invert(1) which makes the entire
+  logo white — readable on the dark footer. The crest/shield detail
+  won't show its original colors, but "The Romano Law Firm" text
+  and shield outline will be fully legible in white.
+
+  If you want the colored crest on the footer, ask your designer
+  for a transparent-background PNG/WebP version of the logo.
+  Save it as "romano-law-firm-logo-transparent.png" and update
+  the footer img src below.
+*/
+.footer-logo-img {
+  height: 36px; width: auto; margin-bottom: 14px;
+  filter: brightness(0) invert(1) opacity(0.82); /* white version */
+  display: block;
+}
+.footer-logo-fallback {
+  font-family: var(--font-display); font-size: 1rem; font-weight: 600;
+  color: var(--cream); margin-bottom: 14px; display: none;
+  letter-spacing: 0.02em;
+}
+.footer-tagline { font-size: 0.81rem; color: #3E5568; line-height: 1.72; margin-bottom: 16px; font-weight: 300; }
+.footer-social a {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 0.76rem; font-weight: 600; color: #3E5568;
+  letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s;
+}
+.footer-social a:hover { color: var(--gold-light); }
+.footer-social svg { width: 14px; height: 14px; fill: currentColor; }
+.footer-col-title {
+  font-family: var(--font-body); font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: #3E5568; margin-bottom: 13px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 7px; }
+.footer-links a { font-size: 0.81rem; color: #6A8BA6; transition: color 0.2s; font-weight: 300; }
+.footer-links a:hover { color: var(--cream); }
+.footer-contact-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 10px; }
+.footer-contact-item svg { width: 13px; height: 13px; fill: var(--gold); flex-shrink: 0; margin-top: 3px; }
+.footer-contact-item span { font-size: 0.8rem; color: #6A8BA6; line-height: 1.5; font-weight: 300; }
+.footer-contact-item a { color: inherit; transition: color 0.2s; }
+.footer-contact-item a:hover { color: var(--cream); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.04); padding: 18px 0; }
+.footer-bottom-inner {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.footer-copy { font-size: 0.72rem; color: #2A3D50; font-weight: 300; }
+.footer-disclaimer {
+  font-size: 0.68rem; color: #2A3D50; max-width: 490px;
+  text-align: right; line-height: 1.55; font-weight: 300;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (min-width: 1024px) { .nav-hamburger { display: none !important; } }
+@media (max-width: 1023px) {
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  .nav-links, .nav-phone { display: none; }
+  .nav-hamburger { display: flex; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo { aspect-ratio: 3/2; max-height: 300px; }
+  .about-photo-badge { left: auto; right: 20px; }
+  .associates-grid { grid-template-columns: 1fr; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .trust-bar-inner { grid-template-columns: repeat(2, 1fr); }
+  .trust-item:nth-child(2) { border-right: none; }
+  .trust-item:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); }
+  .trust-item:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+  .practice-grid { grid-template-columns: 1fr; }
+  .how-steps { grid-template-columns: 1fr; gap: 28px; }
+  .how-steps::before { display: none; }
+}
+@media (max-width: 600px) {
+  .trust-bar-inner { grid-template-columns: 1fr; }
+  .trust-item { border-right: none !important; border-top: 1px solid var(--border); }
+  .trust-item:first-child { border-top: none; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-disclaimer { text-align: left; }
+}
+@media (max-width: 420px) {
+  .hero-headline { font-size: 3rem; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions > * { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════ NAVBAR ══════ -->
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+
+      <a href="#" class="nav-logo" aria-label="The Romano Law Firm homepage">
+        <!--
+          LOGO FILE: romano-law-firm-logo.webp
+          Download: https://theromanolawfirm.com/media/images/romano-law-firm-logo.webp
+          Place in: same folder as this HTML file.
+
+          CSS mix-blend-mode:multiply makes the black background disappear on
+          the white navbar, so the black text + colored crest show perfectly.
+          No editing of the image file needed.
+        -->
+        <img
+          src="media/romano-law-firm-logo.webp"
+          alt="The Romano Law Firm"
+          style="height:50px;width:auto;display:block;mix-blend-mode:multiply;"
+          onerror="this.style.display='none';document.getElementById('nav-logo-fallback').style.display='block'">
+        <span id="nav-logo-fallback" style="display:none;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.2rem;font-weight:600;color:#0A1A2E;letter-spacing:0.02em;">The Romano Law Firm</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#practice">Practice Areas</a></li>
+        <li><a href="#how">How We Work</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="nav-phone"><a href="tel:+18132939000">FL: (813) 293-9000</a></div>
+        <a href="#contact" class="btn-nav">Free Case Review</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+  <div class="nav-mobile-menu" id="mobileMenu" role="menu">
+    <a href="#about" role="menuitem">About the Firm</a>
+    <a href="#practice" role="menuitem">Practice Areas</a>
+    <a href="#how" role="menuitem">How We Work</a>
+    <a href="#faq" role="menuitem">FAQ</a>
+    <a href="#contact" role="menuitem">Contact Us</a>
+    <a href="tel:+18132939000" role="menuitem">FL: (813) 293-9000</a>
+    <a href="tel:+19184097711" role="menuitem">OK: (918) 409-7711</a>
+    <a href="#contact" class="mobile-cta" role="menuitem">Free Case Evaluation →</a>
+  </div>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<section id="hero" aria-labelledby="hero-headline">
+  <div class="hero-rule"></div>
+  <div class="container">
+    <div class="hero-content reveal">
+      <div class="hero-eyebrow">Plaintiff-Only Personal Injury Law Firm</div>
+      <h1 class="hero-headline" id="hero-headline">
+        Injured?<br>
+        We Fight the<br>
+        Insurance Companies<br>
+        <em>So You Don't Have To.</em>
+      </h1>
+      <p class="hero-sub">
+        The Romano Law Firm represents only injury victims — never insurance companies or defendants.
+        Contact us for a free case evaluation. No win, no fee.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+          Get Your Free Case Evaluation
+        </a>
+        <a href="tel:+18132939000" class="btn-outline-light">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          (813) 293-9000
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ TRUST BAR ══════ -->
+<section id="trust-bar" aria-label="Trust signals">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <div class="trust-item reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.73-2.44 7.08-6 8.06-3.55-.98-6-4.33-6-8.06V7.18L12 5z"/></svg></div>
+        <div>
+          <div class="trust-label">Plaintiff-Only — Always</div>
+          <div class="trust-sub">We never represent insurance companies</div>
+        </div>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg></div>
+        <div>
+          <div class="trust-label">Florida · D.C. · Oklahoma</div>
+          <div class="trust-sub">Serving injury victims across three states</div>
+        </div>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.9 4.33 3.56z"/></svg></div>
+        <div>
+          <div class="trust-label">Se Habla Español · Parliamo Italiano</div>
+          <div class="trust-sub">Multilingual legal representation</div>
+        </div>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div>
+        <div>
+          <div class="trust-label">No Win, No Fee</div>
+          <div class="trust-sub">Free consultation — you pay nothing unless we win</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ ABOUT ══════ -->
+<section id="about" aria-labelledby="about-headline">
+  <div class="container">
+    <div class="about-grid">
+
+      <div class="about-photo-wrap reveal-left">
+        <!--
+          PHOTO FILE: d-romano-profilepic.jpg
+          Download: https://theromanolawfirm.com/media/images/d-romano-profilepic.jpg
+          Place in: same folder as this HTML file.
+          The photo will display automatically once the file is present.
+        -->
+        <div class="about-photo">
+          <img
+            src="media/d-romano-profilepic.jpg"
+            alt="D. Romano, Founder of The Romano Law Firm"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="about-photo-placeholder" style="display:none;">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            <span>Download d-romano-profilepic.jpg<br>and place in the same folder</span>
+          </div>
+        </div>
+        <div class="about-photo-badge">
+          <div class="about-photo-badge-year">1992</div>
+          <div class="about-photo-badge-text">FSU Law · J.D. · Law Review</div>
+        </div>
+      </div>
+
+      <div class="about-content reveal-right">
+        <div class="section-label">About the Founder</div>
+        <h2 class="section-headline" id="about-headline">A Personal Mission,<br><em>Not Just a Career</em></h2>
+
+        <p class="section-body">
+          D. Romano's path to personal injury law began with two profound losses in childhood. His paternal grandfather — an immigrant who came to America alone as a teenager — worked under dangerous conditions in the coal mines of West Virginia and later died of complications from those injuries. Around the same time, his maternal grandfather died of heart and lung disease from a lifetime of smoking, in an era when tobacco companies advertised that smoking was healthy. Neither family saw any legal remedy or compensation.
+        </p>
+
+        <div class="about-pullquote">
+          <p>"I like to believe that the Romano Law Firm is the firm that my grandmothers and family would have consulted — if they'd only been given the chance."</p>
+          <cite>— D. Romano, Founder</cite>
+        </div>
+
+        <p class="section-body">
+          Romano earned a business degree in economics, then a J.D. from Florida State University College of Law in 1992, where he was selected for the Law Review — a distinction reserved for high-achieving students. He began his career at firms defending insurance companies and large business interests, which gave him a clear understanding of how insurers build and minimize claims. That work confirmed it was never where he belonged.
+        </p>
+
+        <p class="section-body">
+          He founded the Romano Law Firm on one principle: represent only victims, never insurance companies or defendants. No conflicts of interest. Every client is on the side that matters — yours.
+        </p>
+
+        <div class="about-tags">
+          <span class="about-tag">FSU College of Law · J.D. 1992</span>
+          <span class="about-tag">Law Review Member</span>
+          <span class="about-tag">Plaintiff-Only Since Founding</span>
+          <span class="about-tag">FL · D.C. · OK</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════ ASSOCIATES ══════ -->
+<section id="associates" aria-labelledby="associates-headline">
+  <div class="container">
+    <div class="associates-grid">
+
+      <div class="associates-photo reveal-left">
+        <!--
+          PHOTO FILE: associates.webp
+          Download: https://theromanolawfirm.com/media/images/associates.webp
+          Place in: same folder as this HTML file.
+        -->
+        <img
+          src="media/associates.webp"
+          alt="The Romano Law Firm team of legal and medical professionals"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="associates-photo-placeholder" style="display:none;">
+          <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          <span>Download associates.webp<br>and place in the same folder</span>
+        </div>
+      </div>
+
+      <div class="associates-content reveal-right">
+        <div class="section-label">Our Team</div>
+        <h2 class="section-headline" id="associates-headline">Legal &amp; Medical<br><em>Associates</em></h2>
+        <p class="section-body">
+          We are fortunate to work with a team of legal and medical professionals who help guide clients toward wellness and maximum medical improvement — while carefully documenting injuries and pursuing all available legal remedies.
+        </p>
+        <p class="section-body">
+          The Romano Law Firm works with attorneys who specialize in related areas including social security, workers' compensation, and product liability. When an existing class action or specialized litigation applies to your situation — such as pharmaceutical or product cases — we can direct your claim to the right specialists.
+        </p>
+        <a href="#contact" class="btn-primary" style="display:inline-flex;margin-top:24px;">
+          Talk to Our Team →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════ WHY CHOOSE ══════ -->
+<section id="why" aria-labelledby="why-headline">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Why Romano</div>
+      <h2 class="section-headline" id="why-headline">Built Different.<br><em style="color:var(--gold-light)">Built for Victims.</em></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-card-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.73-2.44 7.08-6 8.06-3.55-.98-6-4.33-6-8.06V7.18L12 5z"/></svg></div>
+        <div class="why-card-title">Plaintiff-Only — Always</div>
+        <div class="why-card-body">We represent only injury victims — never insurance companies, never defendants. Our loyalty is entirely yours. No conflicts of interest, ever.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div>
+        <div class="why-card-title">Defense-Side Experience</div>
+        <div class="why-card-body">Early in his career D. Romano worked for firms defending insurance companies. That firsthand knowledge of how insurers build and minimize claims gives our clients a real strategic advantage.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-card-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.9 4.33 3.56z"/></svg></div>
+        <div class="why-card-title">Multilingual</div>
+        <div class="why-card-body">We communicate in English, Spanish (Se Habla Español), and Italian (Parliamo Italiano) — so language is never a barrier to getting the legal help you deserve.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-card-icon"><svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg></div>
+        <div class="why-card-title">We Come to You</div>
+        <div class="why-card-body">Office appointments in Florida, Washington D.C., and Oklahoma. Home visits, hospital bedside visits, and webcam consultations also available — so you can focus on recovery.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ PRACTICE AREAS ══════ -->
+<section id="practice" aria-labelledby="practice-headline">
+  <div class="container">
+    <div class="practice-intro reveal">
+      <div class="section-label">What We Handle</div>
+      <h2 class="section-headline" id="practice-headline">Practice Areas</h2>
+      <p class="section-body">
+        We help injury victims and their families obtain compensation from negligent parties and their insurance companies. Our practice is focused exclusively on the plaintiff side.
+      </p>
+    </div>
+    <div class="practice-grid">
+      <div class="practice-card reveal">
+        <div class="practice-card-num">01</div>
+        <div>
+          <div class="practice-card-title">Auto Accidents</div>
+          <div class="practice-card-body">Auto accidents are our primary focus. If you've been injured in a car, motorcycle, or other vehicle collision, we are here to help you pursue full and fair compensation from those responsible.</div>
+        </div>
+      </div>
+      <div class="practice-card reveal">
+        <div class="practice-card-num">02</div>
+        <div>
+          <div class="practice-card-title">Personal Injury</div>
+          <div class="practice-card-body">From injuries that may initially seem minor to serious harm including paralysis, dismemberment, or broken bones — we evaluate every case individually and pursue all available remedies to make you financially whole again.</div>
+        </div>
+      </div>
+      <div class="practice-card reveal">
+        <div class="practice-card-num">03</div>
+        <div>
+          <div class="practice-card-title">Wrongful Death</div>
+          <div class="practice-card-body">When a family member is taken through another's negligence or wrongful act, we advocate on behalf of surviving family members to seek the compensation and justice they deserve.</div>
+        </div>
+      </div>
+      <div class="practice-card reveal">
+        <div class="practice-card-num">04</div>
+        <div>
+          <div class="practice-card-title">Insurance Disputes</div>
+          <div class="practice-card-body">Insurance companies do not become multi-billion-dollar entities through generosity. We do not allow our clients to be intimidated by insurance companies — and we level the playing field.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ HOW WE WORK ══════ -->
+<section id="how" aria-labelledby="how-headline">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:580px;margin:0 auto;">
+      <div class="section-label" style="justify-content:center;">The Process</div>
+      <h2 class="section-headline" id="how-headline" style="text-align:center;">Three Steps to<br><em>Fighting Back</em></h2>
+      <p class="section-body" style="margin:0 auto;text-align:center;">
+        We've made the process as simple as possible — so you can focus on recovery while we handle the legal battle.
+      </p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step reveal">
+        <div class="how-step-num">1</div>
+        <div class="how-step-title">Contact Us</div>
+        <div class="how-step-body">Call, email, or fill out our contact form. We're reachable by phone, in-office, at your home or hospital, or via webcam — wherever you are.</div>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">2</div>
+        <div class="how-step-title">Free Case Evaluation</div>
+        <div class="how-step-body">We review the facts of your situation, explain your rights, and give you an honest assessment at no charge and with no obligation to retain us.</div>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-step-num">3</div>
+        <div class="how-step-title">We Fight For You</div>
+        <div class="how-step-body">We pursue every legal remedy available to make you financially whole again — seeking compensation from the responsible party or their insurance company. You pay nothing unless we win.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ LANGUAGES STRIP ══════ -->
+<section id="languages" aria-label="Languages spoken">
+  <div class="container">
+    <div class="lang-inner">
+      <div class="lang-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2z"/></svg>
+        English
+      </div>
+      <div class="lang-sep">·</div>
+      <div class="lang-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2z"/></svg>
+        Se Habla Español
+      </div>
+      <div class="lang-sep">·</div>
+      <div class="lang-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2z"/></svg>
+        Parliamo Italiano
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FAQ ══════ -->
+<section id="faq" aria-labelledby="faq-headline">
+  <div class="container">
+    <div class="faq-grid">
+
+      <div class="faq-intro reveal-left">
+        <div class="section-label">Questions</div>
+        <h2 class="section-headline" id="faq-headline">Frequently<br><em>Asked Questions</em></h2>
+        <p class="section-body">
+          If you've been injured, you likely have many questions. Here are answers to the ones we hear most often. Don't see yours? Call us directly — the consultation is free.
+        </p>
+        <div class="faq-cta-box">
+          <p>Every situation is different. The best way to understand your rights is to speak with us — at no cost and with no obligation to retain us.</p>
+          <a href="#contact" class="btn-primary">Schedule Your Free Consultation</a>
+        </div>
+      </div>
+
+      <div class="faq-list reveal-right">
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>What does "no win, no fee" mean?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
+          </div>
+          <div class="faq-answer">
+            Our fee is contingent on your recovery. If we do not win your case, you owe us nothing in attorney's fees. You can pursue full legal representation without any upfront cost — we are compensated only if and when we recover for you.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Do I have to come to your office?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
+          </div>
+          <div class="faq-answer">
+            No. We offer office appointments in Florida, Washington D.C., and Oklahoma — but we also make home visits, hospital bedside visits, and webcam appointments. We accommodate your situation so you can focus on your recovery.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Do you ever represent insurance companies?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
+          </div>
+          <div class="faq-answer">
+            Never. We represent only individuals — only you. We never represent insurance companies or defendants. This means we have no conflicts of interest, and our full loyalty is always to our client.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>My injury seems minor — should I still call?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
+          </div>
+          <div class="faq-answer">
+            Yes. Injuries that initially seem minor can prove to be more serious or financially significant over time. We evaluate each client on a case-by-case basis. A delay in seeking legal counsel can also jeopardize your claim due to filing deadlines. Our consultation is free, so there is no risk in calling early.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+            <span>Do you work with other specialist attorneys?</span>
+            <div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg></div>
+          </div>
+          <div class="faq-answer">
+            Yes. The Romano Law Firm works with attorneys who specialize in related areas such as social security, workers' compensation, and product liability. When existing litigation or a class action applies to your situation, we can direct your claim to the right specialists.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CONTACT ══════ -->
+<section id="contact" aria-labelledby="contact-headline">
+  <div class="container">
+    <div class="contact-grid">
+
+      <div class="contact-info reveal-left">
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-headline" id="contact-headline">Start Your Free<br><em style="color:var(--gold-light)">Case Evaluation</em></h2>
+        <p>Contact us today — there's no cost, no obligation, and no risk. Because of the many traps that can affect an injury victim, we encourage you not to delay.</p>
+        <div class="contact-details">
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+            <div>
+              <div class="contact-detail-label">Florida</div>
+              <div class="contact-detail-value"><a href="tel:+18132939000">(813) 293-9000</a></div>
+            </div>
+          </div>
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+            <div>
+              <div class="contact-detail-label">Oklahoma</div>
+              <div class="contact-detail-value"><a href="tel:+19184097711">(918) 409-7711</a></div>
+            </div>
+          </div>
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+            <div>
+              <div class="contact-detail-label">Email</div>
+              <div class="contact-detail-value"><a href="mailto:romanolawfirm@gmail.com">romanolawfirm@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg></div>
+            <div>
+              <div class="contact-detail-label">Mailing Address</div>
+              <div class="contact-detail-value">P.O. Box 22073, Tampa, FL 33622</div>
+            </div>
+          </div>
+          <div class="contact-detail-item">
+            <div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.12-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg></div>
+            <div>
+              <div class="contact-detail-label">Fax</div>
+              <div class="contact-detail-value">(813) 448-3663</div>
+            </div>
+          </div>
+        </div>
+        <div class="appt-types">
+          <div class="appt-tag"><svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12z"/></svg> Office Appointments</div>
+          <div class="appt-tag"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> Home / Hospital Visits</div>
+          <div class="appt-tag"><svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg> Webcam Available</div>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap reveal-right">
+        <div id="formContainer">
+          <div class="form-header">
+            <h3>Tell Us What Happened</h3>
+            <p>Free, confidential, no obligation. We respond promptly.</p>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fname">First Name *</label>
+              <input type="text" id="fname" class="form-input" placeholder="First name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lname">Last Name *</label>
+              <input type="text" id="lname" class="form-input" placeholder="Last name" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone Number *</label>
+            <input type="tel" id="phone" class="form-input" placeholder="(000) 000-0000" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input type="email" id="email" class="form-input" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="injury">Brief Description of Your Situation *</label>
+            <textarea id="injury" class="form-textarea" placeholder="Tell us briefly what happened and the nature of your injury..." required></textarea>
+          </div>
+          <button type="button" class="btn-primary form-submit" id="formSubmit">
+            Send My Free Case Request →
+          </button>
+          <p class="form-disclaimer">
+            Submitting this form does not create an attorney-client relationship.
+            All communications are confidential.
+          </p>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <div class="form-success-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
+          <h4>We've Received Your Request</h4>
+          <p>Thank you for reaching out. A member of our team will be in contact with you promptly to discuss your case — at no cost.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer id="footer" aria-label="Site footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div>
+        <!--
+          FOOTER LOGO: same romano-law-firm-logo.webp file.
+          CSS filter: brightness(0) invert(1) converts to white
+          so it's visible on the dark footer background.
+        -->
+        <img
+          src="media/romano-law-firm-logo.webp"
+          class="footer-logo-img"
+          alt="The Romano Law Firm"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="footer-logo-fallback">The Romano Law Firm</span>
+        <p class="footer-tagline">
+          Dedicated to helping injury victims and their families obtain compensation from negligent parties and their insurance companies.
+        </p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/people/The-Romano-Law-Firm/100038759695469/" target="_blank" rel="noopener noreferrer" aria-label="The Romano Law Firm on Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Practice Areas</div>
+        <ul class="footer-links">
+          <li><a href="#practice">Auto Accidents</a></li>
+          <li><a href="#practice">Personal Injury</a></li>
+          <li><a href="#practice">Wrongful Death</a></li>
+          <li><a href="#practice">Insurance Disputes</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#about">About the Firm</a></li>
+          <li><a href="#associates">Associates</a></li>
+          <li><a href="#why">Why Choose Us</a></li>
+          <li><a href="#how">How We Work</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          <span>FL: <a href="tel:+18132939000">(813) 293-9000</a><br>OK: <a href="tel:+19184097711">(918) 409-7711</a><br>Fax: (813) 448-3663</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <span><a href="mailto:romanolawfirm@gmail.com">romanolawfirm@gmail.com</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+          <span>P.O. Box 22073<br>Tampa, FL 33622</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2z"/></svg>
+          <span>Tampa, FL · Washington, D.C. · Tulsa, OK</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-inner">
+        <p class="footer-copy">© 2025 The Romano Law Firm. All Rights Reserved.</p>
+        <p class="footer-disclaimer">Attorney Advertising. Prior results do not guarantee a similar outcome. The information on this website is for general informational purposes only and does not constitute legal advice or create an attorney-client relationship.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ══════ NAVBAR SCROLL ══════
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+
+// ══════ HAMBURGER ══════
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const open = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', open);
+  hamburger.setAttribute('aria-expanded', open);
+});
+mobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  });
+});
+
+// ══════ SCROLL REVEAL ══════
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const delay = parseInt(el.dataset.delay || 0);
+    setTimeout(() => el.classList.add('visible'), delay);
+    observer.unobserve(el);
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el) => {
+  const parent = el.parentElement;
+  const gridParents = ['why-grid','practice-grid','how-steps','trust-bar-inner'];
+  if (parent && gridParents.some(cls => parent.classList.contains(cls))) {
+    const siblings = Array.from(parent.querySelectorAll('.reveal,.reveal-left,.reveal-right'));
+    el.dataset.delay = siblings.indexOf(el) * 85;
+  }
+  observer.observe(el);
+});
+
+// ══════ FAQ ACCORDION ══════
+document.querySelectorAll('.faq-question').forEach(q => {
+  const trigger = () => {
+    const item = q.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+    });
+    if (!wasOpen) { item.classList.add('open'); q.setAttribute('aria-expanded', 'true'); }
+  };
+  q.addEventListener('click', trigger);
+  q.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trigger(); }
+  });
+});
+
+// ══════ FORM SUBMIT ══════
+document.getElementById('formSubmit').addEventListener('click', () => {
+  const fname  = document.getElementById('fname').value.trim();
+  const phone  = document.getElementById('phone').value.trim();
+  const injury = document.getElementById('injury').value.trim();
+  let valid = true;
+  [['fname', fname], ['phone', phone], ['injury', injury]].forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (!val) {
+      el.style.borderColor = '#9B1A28';
+      el.addEventListener('input', () => el.style.borderColor = '', { once: true });
+      valid = false;
+    }
+  });
+  if (!valid) return;
+  document.getElementById('formContainer').style.display = 'none';
+  document.getElementById('formSuccess').classList.add('visible');
+});
+
+// ══════ SMOOTH SCROLL ══════
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      window.scrollTo({
+        top: target.getBoundingClientRect().top + window.scrollY - 72,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+</script>
+</body>
+</html>
